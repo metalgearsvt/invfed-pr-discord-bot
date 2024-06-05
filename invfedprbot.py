@@ -17,7 +17,6 @@ class DiscordClient(discord.Client):
     async def on_message(self, message):
         if user_command.checkCommandMessage(message):
             await user_command.processCommand(conn, self, message)
-        print(f'Message from {message.author}: {message.content}')
 
     # Called when a server member's profile is updated in any way.
     async def on_member_update(self, before, after):
