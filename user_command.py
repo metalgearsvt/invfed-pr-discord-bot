@@ -51,7 +51,6 @@ async def processCommand(conn, client, message):
     message : Message
         The message to process.
     """
-    await message.channel.send(message.author.avatar.url)
     # Remove the prefix from the command.
     full_command = message.content[1:]
     # Split the command into tokens separated by spaces.
