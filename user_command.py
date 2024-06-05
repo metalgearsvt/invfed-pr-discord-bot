@@ -1,6 +1,8 @@
 import datalayer as dl
 import re
 
+PREFIX = '!'
+
 CHANNEL = "nickchannel"
 CHANNEL_DOC = f'{CHANNEL} command: Updates the channel to output nickname changes to. Usage: !{CHANNEL} #channel-to-use'
 async def updateChannel(conn, message, channel):
@@ -34,7 +36,7 @@ def checkCommandMessage(message):
     bool
         True if the message starts with ! and sent by an administrator.
     """
-    return message.author.guild_permissions.administrator and message.content[0] == '!'
+    return message.author.guild_permissions.administrator and message.content[0] == PREFIX
 
 async def processCommand(conn, client, message):
     """
