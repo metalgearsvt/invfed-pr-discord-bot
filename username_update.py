@@ -43,7 +43,8 @@ async def buildAndSendEmbed(conn, client: discord.Client, nickChannel, before, a
     previousNicks = dl.fetchLimitedNameHistory(conn, before.id)
     formattedNickList = ""
     for name in previousNicks:
-        formattedNickList = formattedNickList + name[0] + "\n"
+        if name[0]:
+            formattedNickList = formattedNickList + name[0] + "\n"
 
     # Build the Discord embed.
     embed = discord.Embed(description=f"**<@{before.id}>'s nickname has been updated.**\n\n**New Nickname:**\n{after.nick}\n\n**Previous Nicknames:**\n{formattedNickList}",
