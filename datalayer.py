@@ -71,6 +71,33 @@ def fetchLimitedNameHistory(conn: sqlite3.Connection, id):
     usernames = cur.fetchall()
     return usernames
 
+def fetchUnlimitedNameHistory(conn: sqlite3.Connection, id):
+    """
+    Fetches usernames for id.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The DB connection.
+    id : String
+        The user ID to fetch usernames for.
+    
+    Return
+    ------
+    usernames : List
+        A list of the usernames.
+    """
+    sql = f'''
+        SELECT username FROM {TABLE_NICK_HISTORY}
+        WHERE {HISTORY_USER_ID} = ?
+        ORDER BY {HISTORY_TIMESTAMP} DESC
+    '''
+    vars = (id,)
+    cur = conn.cursor()
+    cur.execute(sql, vars)
+    usernames = cur.fetchall()
+    return usernames
+
 ####################
 # CONFIG VALUES
 ####################
